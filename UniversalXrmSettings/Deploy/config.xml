@@ -1,0 +1,17 @@
+﻿<Configuration>
+  <CrmConnectionString>Url=https://Online.crm.dynamics.com; Username=Username@email; Password=Password; authtype=Office365</CrmConnectionString>
+  <SolutionName>Solution</SolutionName>
+  <SolutionPrefix>mns_</SolutionPrefix>
+  <WebResourceFiles basePath ="\..\">
+    <WebResourceFile file="settings.html" path="settings/settings.html" />
+    <WebResourceFile file="Content\styles\page.css" path="settings/Content/styles/page.css" />
+    <WebResourceFile file="Content\data\settings.js" path="settings/Content/data/settings.js" />
+    <WebResourceFile file="Scripts\jquery.js" path="settings/Scripts/jquery.js" />
+    <WebResourceFile file="Scripts\page.js" path="settings/Scripts/page.js" />
+    <WebResourceFile file="Content\fonts\glyphicons-halflings-regular.eot" path="settings/Content/fonts/glyphiconshalflingsregular.eot" />
+    <WebResourceFile file="Content\fonts\glyphicons-halflings-regular.svg" path="settings/Content/fonts/glyphiconshalflingsregular.svg" />
+    <WebResourceFile file="Content\fonts\glyphicons-halflings-regular.ttf" path="settings/Content/fonts/glyphiconshalflingsregular.ttf" />
+    <WebResourceFile file="Content\fonts\glyphicons-halflings-regular.woff" path="settings/Content/fonts/glyphiconshalflingsregular.woff" />
+    <WebResourceFile file="Content\fonts\glyphicons-halflings-regular.woff2" path="settings/Content/fonts/glyphiconshalflingsregular.woff2" />
+  </WebResourceFiles>
+</Configuration>

@@ -1,0 +1,80 @@
+﻿@import "../bootstrap/bootstrap";
+@import "../bootstrap/grid";
+@import "../bootstrap/forms";
+@import "../bootstrap/buttons";
+@import "../bootstrap/glyphicons";
+
+//** Load fonts from this directory.
+@icon-font-path:          "../fonts/";
+//** File name for all font files.
+@icon-font-name:          "glyphiconshalflingsregular";
+//** Element ID within SVG icon file.
+@icon-font-svg-id:        "glyphicons_halflingsregular";
+
+body {
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Arial;
+    color: #000000;
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.navbar {
+    min-height: 40px;
+    margin-bottom: 0;
+
+    .container {
+        margin: 0 12px 0 12px;
+        width: auto;
+    }
+}
+
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
+#command-bar {
+    .nav {
+        li {
+            margin-top: 4px;
+            position: relative;
+            display: block;
+
+            a {
+                padding: 2px 3px 2px 3px;
+                margin: 2px 2px 5px 4px;
+                line-height: 23px;
+            }
+
+            a:hover {
+                background-color: #d7ebf9;
+            }
+        }
+    }
+}
+
+.control-label {
+    font-size: 12px;
+    color: #444444;
+    text-align: left;
+    font-weight: bolder;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+    padding: 2px 15px 2px 17px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-control {
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+    border-radius: 0;
+    padding: 2px;
+    height: 20px;
+}
