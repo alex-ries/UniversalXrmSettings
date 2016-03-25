@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Universalxrmsettings by alex-ries</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Universalxrmsettings</h1>
+      <h2 class="project-tagline">XRM Settings Page made easy</h2>
+      <a href="https://github.com/alex-ries/UniversalXrmSettings" class="btn">View on GitHub</a>
+      <a href="https://github.com/alex-ries/UniversalXrmSettings/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alex-ries/UniversalXrmSettings/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="universal-xrm-settings" class="anchor" href="#universal-xrm-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Universal Xrm Settings</h1>
+
+<p>The universal Xrm settings page was built to support a simple webpage that would allow for a better configuration experience. The scripts are based on the Web API introduced in CRM 2016.</p>
+
+<p>The page requires the existance of a "configuration entity" which has one field with a unique key and a corresponding value.</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>This solution comes with a configuration in JSON format. This can be adjusted in the Content/data/settings.js file.</p>
+
+<h3>
+<a id="entity-definition" class="anchor" href="#entity-definition" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entity definition</h3>
+
+<p>The following section is the entity definition.</p>
+
+<div class="highlight highlight-source-js"><pre>entityDefinition<span class="pl-k">:</span> {
+    entityName<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>mns_settings<span class="pl-pds">"</span></span>, <span class="pl-c">// The entity logical name</span>
+    id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>mns_settingid<span class="pl-pds">"</span></span>, <span class="pl-c">// The logical name of the ID field</span>
+    key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>mns_key<span class="pl-pds">"</span></span>, <span class="pl-c">// The logical name of the "key" field</span>
+    value<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>mns_value<span class="pl-pds">"</span></span> <span class="pl-c">// The logical name of the value field</span>
+}</pre></div>
+
+<h3>
+<a id="behaviours" class="anchor" href="#behaviours" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Behaviours</h3>
+
+<p>The following section describes the configurable behaviours for this settings page.</p>
+
+<div class="highlight highlight-source-js"><pre>behaviour<span class="pl-k">:</span> {
+    allowCreate<span class="pl-k">:</span> <span class="pl-c1">true</span> <span class="pl-c">// Allow the records to be created if the key does not exist</span>
+}</pre></div>
+
+<h3>
+<a id="setting-fields" class="anchor" href="#setting-fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting Fields</h3>
+
+<p>The following section describes how the fields are defined. The fields are shown with the name as the label, the key corresponds with the key in the setting record.</p>
+
+<div class="highlight highlight-source-js"><pre>settingSet<span class="pl-k">:</span> [
+    {
+        key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>key1<span class="pl-pds">"</span></span>,
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>First Key<span class="pl-pds">"</span></span>,
+        description<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>The very first key<span class="pl-pds">"</span></span>
+    },
+    {
+        key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>key2<span class="pl-pds">"</span></span>,
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Second Key<span class="pl-pds">"</span></span>,
+        description<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>The second key<span class="pl-pds">"</span></span>
+    }
+    <span class="pl-c">// Add more</span>
+]</pre></div>
+
+<h2>
+<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deployment</h2>
+
+<p>Since this page is meant to be part of a custom solution/setup the deployment can be done to an existing (or new) custom unmanaged solution. The deployment contains two files:</p>
+
+<ul>
+<li>deploy.ps1 - The deployment Powershell script</li>
+<li>config.xml - The deployment configuration XML file</li>
+</ul>
+
+<p>Change the configuration file. Add a CRM connection string as per the <a href="https://msdn.microsoft.com/en-us/library/jj602970.aspx">simple configuration example on MSDN</a>.</p>
+
+<p>The solution name and the prefix can be changed as needed.</p>
+
+<p>Do not remove any of the webresource files, all are required unless you make other modifications.</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">Configuration</span>&gt;
+  &lt;<span class="pl-ent">CrmConnectionString</span>&gt;CRM CONNECTION STRING&lt;/<span class="pl-ent">CrmConnectionString</span>&gt;
+  &lt;<span class="pl-ent">SolutionName</span>&gt;My Custom Solution&lt;/<span class="pl-ent">SolutionName</span>&gt;
+  &lt;<span class="pl-ent">SolutionPrefix</span>&gt;new_&lt;/<span class="pl-ent">SolutionPrefix</span>&gt;
+  &lt;<span class="pl-ent">WebResourceFiles</span> basePath =<span class="pl-s"><span class="pl-pds">"</span>\..\<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>settings.html<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/settings.html<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\styles\page.css<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/styles/page.css<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\data\settings.js<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/data/settings.js<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Scripts\jquery.js<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Scripts/jquery.js<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Scripts\page.js<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Scripts/page.js<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\fonts\glyphicons-halflings-regular.eot<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/fonts/glyphiconshalflingsregular.eot<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\fonts\glyphicons-halflings-regular.svg<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/fonts/glyphiconshalflingsregular.svg<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\fonts\glyphicons-halflings-regular.ttf<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/fonts/glyphiconshalflingsregular.ttf<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\fonts\glyphicons-halflings-regular.woff<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/fonts/glyphiconshalflingsregular.woff<span class="pl-pds">"</span></span> /&gt;
+    &lt;<span class="pl-ent">WebResourceFile</span> <span class="pl-e">file</span>=<span class="pl-s"><span class="pl-pds">"</span>Content\fonts\glyphicons-halflings-regular.woff2<span class="pl-pds">"</span></span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>settings/Content/fonts/glyphiconshalflingsregular.woff2<span class="pl-pds">"</span></span> /&gt;
+  &lt;/<span class="pl-ent">WebResourceFiles</span>&gt;
+&lt;/<span class="pl-ent">Configuration</span>&gt;</pre></div>
+
+<h2>
+<a id="disclaimer" class="anchor" href="#disclaimer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Disclaimer</h2>
+
+<p>The deployment script is based heavily on Aymeric's <a href="https://blogs.msdn.microsoft.com/aymerics_blog/2015/06/06/synchronize-a-webresources-folder-to-crm-with-powershell/">synchronize CRM webresources folder script</a>.</p>
+
+<p>This solution comes bundled with bootstrap and jQuery (installed through NuGet), all relevant licenses apply.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alex-ries/UniversalXrmSettings">Universalxrmsettings</a> is maintained by <a href="https://github.com/alex-ries">alex-ries</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
